@@ -1,0 +1,23 @@
+services:
+
+  postgres:
+
+    image: postgres:17
+
+    container_name: driver_analytics_db
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: driver_analytics
+      POSTGRES_USER: driver_user
+      POSTGRES_PASSWORD: driver_pass
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
