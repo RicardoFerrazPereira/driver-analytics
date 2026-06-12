@@ -12,15 +12,15 @@ class Trip(Base):
 
     id = Column(Integer, primary_key=True)
 
-    platform = Column(String(20), nullable=False)
+    platform = Column(String(20), nullable=False, index=True)
 
-    trip_date = Column(Date)
+    trip_date = Column(Date, index=True)
 
     processed_time = Column(String(5))
 
     trip_time = Column(String(5))
 
-    event_type = Column(String(100))
+    event_type = Column(String(100), index=True)
 
     gross_amount = Column(Numeric(10, 2))
 
