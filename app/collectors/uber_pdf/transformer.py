@@ -5,6 +5,7 @@ from datetime import date
 import pandas as pd
 
 from parser import extract_records
+from trip_hash import generate_trip_hash
 
 MONTHS = {
     "jan": 1,
@@ -155,6 +156,8 @@ def transform_pdf(pdf_path: str):
 
         record = build_record(row["event_line"], row["detail_line"], report_year)
 
+        record["trip_hash"] = generate_trip_hash(record)
+
         records.append(record)
 
     return records
@@ -166,9 +169,10 @@ if __name__ == "__main__":
 
     print(f"\nTotal registros: {len(records)}\n")
 
-    print("\nPrimeiros 5 registros:\n")
+    print("Primeiros 5 registros:\n")
 
     for record in records[:5]:
+
         print(record)
 
     df = pd.DataFrame(records)
